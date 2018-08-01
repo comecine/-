@@ -1,0 +1,14 @@
+A. Dest PC
+(1) vi /etc/sysconfig/selinux -> disbale selinux
+
+B. install
+(1) git clone https://github.com/comecine/Ansible-Playbook-Nagios.git
+(2) mv Ansible-Playbook-Nagios.git/ ansible-role-nagios
+(3) edit playbook.yml hosts
+(4) account and password setting @0.edit.memo
+(5) ansible-playbook playbook.yml
+
+
+B.認證方式
+
+C.設定
