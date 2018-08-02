@@ -1,14 +1,46 @@
-A. Dest PC
-(1) vi /etc/sysconfig/selinux -> disbale selinux
-
-B. install
+A. install
 (1) git clone https://github.com/comecine/Ansible-Playbook-Nagios.git
 (2) mv Ansible-Playbook-Nagios.git/ ansible-role-nagios
 (3) edit playbook.yml hosts
 (4) account and password setting @0.edit.memo
 (5) ansible-playbook playbook.yml
 
+B. Dest PC
+(1) vi /etc/sysconfig/selinux -> disbale selinux
+(2) firewall-cmd --zone=public --add-port=80/tcp --permanent
+(3) firewall-cmd --reload
+(4) service httpd restart
+(5) firewall-cmd --zone=public --list-all
 
-B.認證方式
+C. nagios setting: vi /usr/local/nagios/etc/nagios.cfg
+(1) mkdir /etc/nagios
+(2) ln -s  /usr/local/nagios/etc/nagios.cfg /etc/nagios/
+(3) vi /etc/nagios/nagios.cfg
+    - 修改log: log_file=/var/log/nagios.log
+
+D. start and restart: service nagios start/restart
+E. check naigos stauts: /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+
+
+F. Monitor: https://blog.pmail.idv.tw/?cat=16
+(1) Windows: https://nsclient.org/download/
+    Clinet:
+    - 設定IP, password不用設定
+    - 安裝的module全勾
+    - 服務-> nsclient++ -> 登入 -> 允許服務與桌面互動打勾
+    Server:
+    - vi /etc/nagios/nagios.cfg
+    - cp /usr/local/nagios/etc/ls/Windows.cfg jaypc.cfg
+    - vi jaypc.cfg and edit address
+    - check naigos stauts: /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+    - if pass, service nagios restarted
+
+
+(2) Linux
+(3) Web service
+
+
+G.backup and restore
+
 
 C.設定
