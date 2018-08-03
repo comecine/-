@@ -1,11 +1,11 @@
-A. install
+A. Ansible Center install
 (1) git clone https://github.com/comecine/Ansible-Playbook-Nagios.git
 (2) mv Ansible-Playbook-Nagios.git/ ansible-role-nagios
 (3) edit playbook.yml hosts
 (4) account and password setting @0.edit.memo
 (5) ansible-playbook playbook.yml
 
-B. Dest PC
+B. Server
 (1) vi /etc/sysconfig/selinux -> disbale selinux
 (2) firewall-cmd --zone=public --add-port=80/tcp --permanent
 (3) firewall-cmd --reload
@@ -24,19 +24,39 @@ E. check naigos stauts: /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/na
 
 F. Monitor: https://blog.pmail.idv.tw/?cat=16
 (1) Windows: https://nsclient.org/download/
-    Clinet:
+    Client:
     - 設定IP, password不用設定
     - 安裝的module全勾
     - 服務-> nsclient++ -> 登入 -> 允許服務與桌面互動打勾
     Server:
-    - vi /etc/nagios/nagios.cfg
+    - vi /etc/nagios/nagios.cfg -> add jaypc.cfg
     - cp /usr/local/nagios/etc/ls/Windows.cfg jaypc.cfg
-    - vi jaypc.cfg and edit address
+    - vi jaypc.cfg then edit hostname and address
+    - check naigos stauts: /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+    - if pass, service nagios restarted
+(2) Linux: http://it001.pixnet.net/blog/post/345751478-it%E5%B0%88%E9%A1%8C-nagios%E5%AE%89%E8%A3%9D
+    Client:
+    - yum install wget httpd php glibc glibc-common gd gd-devel make net-snmp unzip openssl-devel gcc
+    - git clone https://github.com/NagiosEnterprises/nrpe.git
+    - cd nrpe/
+    - ./configure
+    - make all
+    - make install-groups-users
+    - make install
+    - make install-plugin
+    - make install-daemon
+    - make install-config
+    - make install-inetd
+    - make install-init
+    - vi /usr/local/nagios/etc/nrpe.cfg -> allowed_hosts=127.0.0.1,::191.168.1.221
+    - systemctl start nrpe
+    Server:
+    - vi /etc/nagios/nagios.cfg -> add jaypc.cfg
+    - cp /usr/local/nagios/etc/ls/nlocalhost jaypc.cfg
+    - vi jaypc.cfg then edit hostname and address
     - check naigos stauts: /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
     - if pass, service nagios restarted
 
-
-(2) Linux
 (3) Web service
 
 
@@ -44,3 +64,11 @@ G.backup and restore
 
 
 C.設定
+
+
+FAQ:
+1. checking for SSL headers... configure: error: Cannot find ssl headers
+A: 原因是缺少openssl-devel包, yum -y install openssl-devel
+
+2. configure: error: no acceptable C compiler found in $PATH
+A: yum install gcc
