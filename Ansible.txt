@@ -209,19 +209,6 @@ CENTOS 7
        firewalld: service=http permanent=true state=enabled
 
 
-
-
-#centos 6
-   - name: Ansible copy file to remote server
-     copy:
-       src: /etc/sysconfig/iptables
-       dest: /etc/sysconfig/
-   - name: Restart iptables
-     service:
-       name: iptables
-       state: restarted
-   - name: Restart httpd
-     service:
-       name: httpd
-       state: restarted
-#centos 7
+4. ansible-playbook 如果出現 skipping: no hosts matched
+		- check playbook hosts
+		- 再不行就用ansible-playbook xxx.yml -i file

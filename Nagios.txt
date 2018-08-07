@@ -37,7 +37,7 @@ F. Monitor: https://blog.pmail.idv.tw/?cat=16
 (2) Linux: http://it001.pixnet.net/blog/post/345751478-it%E5%B0%88%E9%A1%8C-nagios%E5%AE%89%E8%A3%9D
     Client:
     - yum install wget httpd php glibc glibc-common gd gd-devel make net-snmp unzip openssl-devel gcc
-    - git clone https://github.com/NagiosEnterprises/nrpe.git
+    - git clone https://github.com/comecine/Ansible-Playbook-Nagios-client-nrpe.git
     - cd nrpe/
     - ./configure
     - make all
@@ -52,10 +52,10 @@ F. Monitor: https://blog.pmail.idv.tw/?cat=16
     - systemctl start nrpe
     Server:
     - vi /etc/nagios/nagios.cfg -> add jaypc.cfg
-    - cp /usr/local/nagios/etc/ls/nlocalhost jaypc.cfg
+    - cp /usr/local/nagios/etc/objects/nlocalhost jaypc.cfg
     - vi jaypc.cfg then edit hostname and address
     - check naigos stauts: /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
-    - if pass, service nagios restarted
+    - if pass, service nagios restart
 
 (3) Web service
 
