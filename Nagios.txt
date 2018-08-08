@@ -41,7 +41,7 @@ F. Monitor: https://blog.pmail.idv.tw/?cat=16
     - cd nrpe/
     - ./configure
     - make all
-    - make install-groups-users
+    - make install-groups-users (add user group)
     - make install
     - make install-plugin
     - make install-daemon

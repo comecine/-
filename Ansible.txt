@@ -10,7 +10,8 @@ A. install
 B.認證方式
 (1) vi /etc/ansible/hosts
 [ans1]
-ansible-demo.local ansible_ssh_host=192.168.1.201 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=1qpalzm
+ansible-demo.local
+ansible_ssh_host=192.168.1.201 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=1qpalzm
 (2) SSH Key - 以root為例
 cd /root/.ssh/
 ssh-keygen
