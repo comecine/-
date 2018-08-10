@@ -41,7 +41,9 @@ F. Monitor: https://blog.pmail.idv.tw/?cat=16
     - cd nrpe/
     - ./configure
     - make all
-    - make install-groups-users (add user group)
+    - make install-groups-users
+      * groupadd -r nagios
+      * useradd -r -g nagios nagios
     - make install
     - make install-plugin
     - make install-daemon
@@ -50,10 +52,11 @@ F. Monitor: https://blog.pmail.idv.tw/?cat=16
     - make install-init
     - vi /usr/local/nagios/etc/nrpe.cfg -> allowed_hosts=127.0.0.1,::191.168.1.221
     - systemctl start nrpe
+    - open firewall port:5666
     Server:
     - vi /etc/nagios/nagios.cfg -> add jaypc.cfg
     - cp /usr/local/nagios/etc/objects/nlocalhost jaypc.cfg
-    - vi jaypc.cfg then edit hostname and address
+    - vi jaypc.cfg then edit all hostname and address
     - check naigos stauts: /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
     - if pass, service nagios restart
 
