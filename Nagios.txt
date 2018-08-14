@@ -60,7 +60,12 @@ F. Monitor: https://blog.pmail.idv.tw/?cat=16
     - check naigos stauts: /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
     - if pass, service nagios restart
 
-(3) Web service
+G. Nagios XI
+    - 可以copy nagios設定檔, 直接放在 /usr/local/nagios/etc/static, nagiosxi就可以直接讀
+    - Nagios XI可以系統備份, 可以進行區網主機網路監控 (主機系統監控要增加nrpe)
+    -
+
+
 
 
 G.backup and restore
@@ -75,3 +80,6 @@ A: 原因是缺少openssl-devel包, yum -y install openssl-devel
 
 2. configure: error: no acceptable C compiler found in $PATH
 A: yum install gcc
+
+3. Nagios如何批量增加量測?
+A: http://blog.51cto.com/xtony/978758

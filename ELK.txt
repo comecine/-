@@ -1,0 +1,51 @@
+A. ELK install: https://blog.johnwu.cc/article/how-to-install-elasticsearch-logstash-and-kibana-elk-stack-on-centos-red-hat.html
+(1) yum install jre
+(2) cd /tmp
+(3) wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.3.noarch.rpm
+(4) rpm -ivh elasticsearch-1.7.3.noarch.rpm
+(5) systemctl start elasticsearch
+(6) firewall-cmd --zone=public --add-port=9200/tcp --permanent
+(7) firewall-cmd --reload
+(8) vi /etc/elasticsearch/jvm.options
+    -Xms1g
+    -Xmx1g
+(9) vi /etc/elasticsearch/elasticsearch.yml
+    - network.bind_host: 0.0.0.0
+    - http.port: 9200
+(10) systemctl start elasticsearch
+(11) wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.3.2-x86_64.rpm
+(12) rpm -ivh filebeat-6.3.2-x86_64.rpm
+(13) vi /etc/filebeat/filebeat.yml
+    - hosts: ["192.168.56.101:9200"]
+    - index: "my-first-index"
+(15) service filebeat restart
+(16) wget https://artifacts.elastic.co/downloads/logstash/logstash-6.3.2.rpm
+(17) rpm -ivh logstash-6.3.2.rpm
+(18) /usr/share/logstash/bin/system-install
+(19) systemctl start logstash
+(20) vi /etc/logstash/conf.d/pipeline.conf
+      input {
+        beats {
+          port => 5044
+        }
+      }
+      filter {
+        grok {
+            match => [ "message", "%{TIMESTAMP_ISO8601:logTimestamp} \[%{NUMBER:thread}\] %{DATA:logType} %{DATA:logger} - %{GREEDYDATA:detail}" ]
+        }
+        mutate {
+          add_tag => ["logstash"]
+        }
+      }
+      output {
+        elasticsearch {
+          hosts => ["http://localhost:9200"]
+          index => "%{[@metadata][beat]}-%{+xxxx.ww}"
+          document_type => "%{[@metadata][type]}"
+        }
+      }
+(21) systemctl start logstash
+(22) service filebeat restart
+(23) wget https://artifacts.elastic.co/downloads/kibana/kibana-6.3.2-x86_64.rpm
+(25) rpm -ivh kibana-6.3.2-x86_64.rpm
+(26) systemctl start kibana
