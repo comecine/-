@@ -49,3 +49,20 @@ A. ELK install: https://blog.johnwu.cc/article/how-to-install-elasticsearch-logs
 (23) wget https://artifacts.elastic.co/downloads/kibana/kibana-6.3.2-x86_64.rpm
 (25) rpm -ivh kibana-6.3.2-x86_64.rpm
 (26) systemctl start kibana
+
+B. ElasticSearch 設定
+(1) 開啟對外連線
+  - vi /etc/elasticsearch/elasticsearch.yml
+  - network.bind_host: 0.0.0.0
+  - http.port: 9200
+  - service elasticsearch restart
+
+
+
+C. Kibana 指令
+(1) 匯入log: curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/shakespeare/doc/_bulk?pretty' --data-binary @shakespeare_6.0.json
+(2) 查看哪些log: $ curl -X GET "localhost:9200/_cat/indices?v"
+(3) Kibana顯示log
+    - management -> index pattern -> Create index pattern -> 輸入log的名字, ex: logstash-*, shakes*
+    - Discover選擇log即可
+    

@@ -1,0 +1,50 @@
+1. 基礎:
+  A. 安裝:
+      - 如何安裝CentOS7
+      - 安裝完, 需要安裝哪些基本package?
+      - 如何移除package?
+      - 如何重開機?
+      - 如何開機?
+
+  B. 帳號
+      - 如何新增帳號與設定密碼
+      - 如何從linux主機連線到另一台Linux 主機
+
+  C. 檔案操作
+      - 如何複製檔案?
+      - 如何修改檔案?
+      - 如何將檔案改名?
+      - 如何將檔案內容顯示在命令列?
+      - 如何利用關鍵字, 找詢檔案內的相關內容
+      - 如何壓縮, 解壓縮
+
+  D. 網路管理
+      - 如何修改IP地址
+      - 如何修改主機名稱
+      - 如何修改DNS設定
+      - 如何修改防火牆, 開啟相對應的port
+
+  E. 系統管理與備份
+      - 如何看硬碟使用空間?
+      - 如何設定自動排程工作?
+
+2. 進階:
+  A. 安裝:
+      - 如何增加軟體安裝源
+
+  B. 帳號:
+      - 如何不使用密碼登入Linux主機
+      - 如何將自己的金鑰同步到多台Linux主機
+
+  C. 檔案操作
+      - 如何將檔案從Linux主機上傳到另一台Linux主機?
+      - 如何將檔案從本機上傳到遠端Linux主機?
+      - 一台Linux主機如何將資料同步多台Client?
+
+3. 軟體
+  A. Mass deploymen: Ansible
+  B. Web Server: Apache / Nginx
+  C. DNS: Bind
+  D. Monitor: Zabbix / Nagios
+  E. Log Analysis: ELK / Splunk
+  F. Database: MySQL
