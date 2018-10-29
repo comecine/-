@@ -1,0 +1,2 @@
+### Install
+#### http://docs.splunk.com/Documentation/Splunk/7.2.0/Installation/InstallonLinux
